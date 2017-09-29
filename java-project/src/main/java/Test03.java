@@ -1,4 +1,4 @@
-public class App {
+public class Test03 {
     
     public static void main(String[] args) {
       String name = "홍길동";
