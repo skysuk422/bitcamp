@@ -37,7 +37,7 @@ public class Test21_8_s {
                 mails.add(i.mail);
                 numbers.add(i.number);
                 System.out.println("저장하였습니다");
-            }
+            } 
             else System.out.println("저장을 취소하셨습니다.");
             
             if(console.readLine("계속하시겠습니까?? (y/n) ").equals("y") == true) 
