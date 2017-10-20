@@ -42,9 +42,9 @@ public class Test21_4_2_2 {
         
         StringBuffer buf = inputNumber();
         
-        NumberCount(buf);
+        int[] cnt = NumberCount(buf);
         
-        //printNumberCount(cnt);
+        printNumberCount(cnt);
         
         
         
