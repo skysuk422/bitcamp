@@ -1,18 +1,32 @@
+import java.util.Scanner;
+
 public class App {
+    static boolean confirm(String message) {
+        Scanner keyScan = new Scanner(System.in);
+        System.out.print(message);
+        String response = keyScan.nextLine().toLowerCase();
+        
+        if (response.equals("y") || response.equals("yes"))
+            return true;
+        return false;
+    }
+    
     
     public static void main(String[] args) {
-      String name = "홍길동";
-      int kor = 100;
-      int eng = 97;
-      int math = 98;
-      int sum = kor + eng + math;
-      float aver = sum / 3.0f;
-
-      System.out.printf("이름: %s\n", name);
-      System.out.printf("국어: %d\n", kor);
-      System.out.printf("영어: %d\n", eng);
-      System.out.printf("수학: %d\n", math);
-      System.out.printf("총점: %d\n", sum);
-      System.out.printf("평균: %f\n", aver);
+      ScoreDao scoreDao = new ScoreDao();
+//        ScoreDao scores = new ScoreDao();
+        while (true) {
+            Score score = new Score();
+            score.input();
+            scoreDao.add(score);
+            
+            
+            if (!confirm("계속하시겠습니까? "))
+                break;
+            
+        }
+        for (int i = 0; i < scoreDao.size(); i++) {
+            scoreDao.get(i).print();
+        }
         }
   }
