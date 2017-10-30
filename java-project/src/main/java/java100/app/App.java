@@ -2,6 +2,7 @@ package java100.app;
 import java.util.Scanner;
 
 public class App {
+    
     static boolean confirm(String message) {
         Scanner keyScan = new Scanner(System.in);
         System.out.print(message);
