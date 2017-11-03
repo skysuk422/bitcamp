@@ -75,7 +75,7 @@ package java100.app;
 
 import java.util.Scanner;
  
-// 
+//  
 // 1) 회원 정보를 담을 메모리를 설계한다.
 //    회원 정보를 담을 새로운 데이터 타입을 정의한다.
 //    => Member 클래스 정의
