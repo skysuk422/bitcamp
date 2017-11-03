@@ -71,7 +71,7 @@
 
 명령>
  */
-package java100.app;
+
 
 import java.util.Scanner;
  
@@ -89,14 +89,12 @@ import java.util.Scanner;
 // 4) App 클래스에 회원관리 메뉴에 대한 코드를 추가한다.
 // 5) 회원관리의 add 기능 추가한다.
 // 6) 회원관리의 view 기능 추가한다.
-// 7) 회원관리의 update 기능 추가한다.
-// 8) 회원관리의 delete 기능 추가한다.
+
 public class App {
     
     static Scanner keyScan = new Scanner(System.in);
     static ScoreController scoreController = new ScoreController();
     static MemberController memberController = new MemberController();
-    static BoardController boardController = new BoardController();
     
     public static void main(String[] args) {
         
@@ -127,8 +125,9 @@ public class App {
         switch (menuNo) {
         case "1": scoreController.execute(); break;
         case "2": memberController.execute(); break;
-        case "3": boardController.execute(); break;
-        
+        case "3":
+            System.out.println("게시판");
+            break;
         default:
             System.out.println("해당 번호의 메뉴가 없습니다.");
         }

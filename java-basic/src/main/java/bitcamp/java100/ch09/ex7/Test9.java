@@ -1,6 +1,7 @@
 package bitcamp.java100.ch09.ex7;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class Test9 {
 
@@ -38,20 +39,23 @@ public class Test9 {
 
         public static void main(String[] args) {
 
-            HashMap<MyKey,Contact> map = new HashMap<>();
+            HashMap<String,Contact> map = new HashMap<>();
 
-            Contact c1 = new Contact("홍길동", "hong@test.com", "1111-1111");
-            MyKey k1 = new MyKey("aaaa", "1111");
-
-            map.put(k1, c1);
-
-            System.out.println(map.get(k1));
+            map.put("c01", new Contact("홍길동", "hong@test.com", "1111-1111"));
+            map.put("c02", new Contact("홍길동", "hong@test.com", "1111-1111"));
+            map.put("c03", new Contact("홍길동", "hong@test.com", "1111-1111"));
+            map.put("c04", new Contact("홍길동", "hong@test.com", "1111-1111"));
+            map.put("c05", new Contact("홍길동", "hong@test.com", "1111-1111"));
             
-            MyKey k2 = new MyKey("aaaa", "1111");
+            Set<String> keySet = map.keySet();  //키가 들어있는 값 리턴
             
-            System.out.println(map.get(k2));
-
-
+            String[] keyList = new String[keySet.size()];
+            keySet.toArray(keyList);
+            
+            for (String key : keyList) {
+                System.out.printf("%s=%s\n", key, map.get(key).toString());
+            }
+            
 
 
         }
