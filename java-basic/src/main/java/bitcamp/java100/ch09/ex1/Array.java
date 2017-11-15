@@ -1,5 +1,7 @@
 package bitcamp.java100.ch09.ex1;
 
+import java.util.Iterator;
+
 public class Array {
     private Object[] arr = new Object[10000];
     private int cursor = 0;
@@ -49,5 +51,27 @@ public class Array {
         arr[index] = value;
         
         cursor++;
+    }
+    
+    public Iterator iterator() {
+        return new MyIterator();
+    }
+    
+    class MyIterator implements Iterator<Object> {
+        int index;
+        
+        @Override
+        public boolean hasNext() {
+            
+        if (index < cursor)
+            return true;
+            return false;
+        }
+
+        @Override
+        public Object next() {
+            return arr[index++];
+        }
+        
     }
 }
