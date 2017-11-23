@@ -3,7 +3,7 @@ package java100.app.util;
 import java.util.Scanner;
 
 public class Prompts {
-  static Scanner keyScan = new Scanner(System.in);
+    static Scanner keyScan = new Scanner(System.in);
     
     public static int inputInt(String message, Object...values) {
         System.out.printf(message, values);
