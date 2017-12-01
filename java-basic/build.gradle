@@ -36,6 +36,11 @@ jcenter()
 dependencies {
 // mySQL DBMS JDBC Driver
 compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.44'
+
+// Spring IoC 컨테이너 라이브러리
+compile 'org.springframework:spring-context:5.0.2.RELEASE'
+
+
 compile 'com.google.guava:guava:22.0'
 
 testCompile 'junit:junit:4.12'

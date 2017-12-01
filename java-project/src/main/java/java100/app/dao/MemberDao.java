@@ -1,154 +1,20 @@
 package java100.app.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 import java100.app.domain.Member;
-import java100.app.util.DataSource;
 
-public class MemberDao {
-    
-    public List<Member> selectList() {
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        
-        try {
-            con = DataSource.getConnection();
-            pstmt = con.prepareStatement(
-                    "select no,name,email,regdt from ex_memb");
-            rs = pstmt.executeQuery();
-            
-            ArrayList<Member> list = new ArrayList<>();
-            
-            while (rs.next()) {
-                Member member = new Member();
-                member.setNo(rs.getInt("no"));
-                member.setName(rs.getString("name"));
-                member.setEmail(rs.getString("email"));
-                member.setCreatedDate(rs.getDate("regdt"));
-                
-                list.add(member);
-            }
-            
-            return list;
-            
-        } catch (Exception e) {
-            throw new DaoException(e);
-        } finally {
-            try {rs.close();} catch (Exception e) {}
-            try {pstmt.close();} catch (Exception e) {}
-            DataSource.returnConnection(con);
-        }
-    }
-    
-    public int insert(Member member) {
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        
-        try {
-            con = DataSource.getConnection();
-            pstmt = con.prepareStatement(
-                    "insert into ex_memb(name,email,pwd,regdt)"
-                            + " values(?,?,password(?),now())");
-            
-            pstmt.setString(1, member.getName());
-            pstmt.setString(2, member.getEmail());
-            pstmt.setString(3, member.getPassword());
-            
-            return pstmt.executeUpdate();
-            
-        } catch (Exception e) {
-            throw new DaoException(e);
-        } finally {
-            try {pstmt.close();} catch (Exception e) {}
-            DataSource.returnConnection(con);
-        }
-    }
-    
-    public int update(Member member) {
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        
-        try {
-            con = DataSource.getConnection();
-            pstmt = con.prepareStatement(
-                    "update ex_memb set name=?,email=?,pwd=password(?) where no=?");
-            
-            pstmt.setString(1, member.getName());
-            pstmt.setString(2, member.getEmail());
-            pstmt.setString(3, member.getPassword());
-            pstmt.setInt(4, member.getNo());
-            
-            return pstmt.executeUpdate();
-            
-        } catch (Exception e) {
-            throw new DaoException(e);
-        } finally {
-            try {pstmt.close();} catch (Exception e) {}
-            DataSource.returnConnection(con);
-        }
-    }
-    
-    public int delete(int no) {
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        
-        try {
-            con = DataSource.getConnection();
-            pstmt = con.prepareStatement(
-                    "delete from ex_memb where no=?");
-            
-            pstmt.setInt(1, no);
-            
-            return pstmt.executeUpdate();
-            
-        } catch (Exception e) {
-            throw new DaoException(e);
-        } finally {
-            try {pstmt.close();} catch (Exception e) {}
-            DataSource.returnConnection(con);
-        }
-    }
-    
-    public Member selectOne(int no) {
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        
-        try {
-            con = DataSource.getConnection();
-            pstmt = con.prepareStatement(
-                    "select no,name,email,regdt from ex_memb where no=?");
-            
-            pstmt.setInt(1, no);
-            
-            rs = pstmt.executeQuery();
-            
-            Member member = null;
-            
-            if (rs.next()) {
-                member = new Member();
-                member.setNo(no);
-                member.setName(rs.getString("name"));
-                member.setEmail(rs.getString("email"));
-                member.setCreatedDate(rs.getDate("regdt"));
-                
-            } 
-            
-            return member;
-            
-        } catch (Exception e) {
-            throw new DaoException(e);
-        } finally {
-            try {rs.close();} catch (Exception e) {}
-            try {pstmt.close();} catch (Exception e) {}
-            DataSource.returnConnection(con);
-        }
-    }
+//MemberDao 클래스로부터 메서드 호출 규칙만 분리하여 따로 정의한다.
+//=> setDataSource()는 컨트롤러가 호출하는 메서드가 아니다.
+//=> 그래서 규칙에서 제외했다.
+//=> 이 규칙은 MemberController가 호출하는 규칙이다.
+//
+public interface MemberDao {
+    List<Member> selectList();
+    int insert(Member member);
+    int update(Member member);
+    int delete(int no);
+    Member selectOne(int no);
 }
 
 

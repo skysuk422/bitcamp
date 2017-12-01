@@ -6,30 +6,30 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DataSource {
-    static {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException ex) {
-            throw new RuntimeException(
-                    "JDBC 드라이버 클래스를 찾을 수 없습니다.");
-        }
+    
+    private String driverClassName;
+    private String url;
+    private String username;
+    private String password;
+    
 
-    }
+    private ArrayList<Connection> list =new ArrayList<>();
 
-    static ArrayList<Connection> list =new ArrayList<>();
-
-    synchronized public static Connection getConnection() throws SQLException {
+    synchronized public Connection getConnection() 
+            throws SQLException, ClassNotFoundException {
 
         if (list.size() > 0) {
             return list.remove(0);
         }
+        
+        Class.forName(this.driverClassName);
 
         return DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/studydb", "study", "1111");
+                this.url, this.username, this.password);
 
     }
 
-    synchronized public static void returnConnection(Connection con) {
+    synchronized public void returnConnection(Connection con) {
         try {
         if (con == null) return;
         if (con.isClosed()) return;
@@ -38,6 +38,40 @@ public class DataSource {
     } catch (Exception e) {}
 
 }
+
+    public String getDriverClassName() {
+        return driverClassName;
+    }
+
+    public void setDriverClassName(String driverClassName) {
+        this.driverClassName = driverClassName;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String usernamel) {
+        this.username = usernamel;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    
     
     
     

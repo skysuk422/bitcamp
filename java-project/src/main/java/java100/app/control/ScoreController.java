@@ -3,12 +3,18 @@ package java100.app.control;
 import java.io.PrintWriter;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java100.app.dao.ScoreDao;
 import java100.app.domain.Score;
 
+@Component("/score")  // 이 클래스의 객체를 자동 생성해야 함을 표시! 
 public class ScoreController implements Controller {
     
-    ScoreDao scoreDao = new ScoreDao();
+    @Autowired
+    ScoreDao scoreDao;
+    
     
     @Override
     public void destroy() {}

@@ -3,12 +3,17 @@ package java100.app.control;
 import java.io.PrintWriter;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java100.app.dao.BoardDao;
 import java100.app.domain.Board;
 
+@Component("/board")  // 이 클래스의 객체를 자동 생성해야 함을 표시!
 public class BoardController implements Controller {
     
-    BoardDao boardDao = new BoardDao();
+    @Autowired
+    BoardDao boardDao;
     
     @Override
     public void destroy() {}
