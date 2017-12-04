@@ -1,4 +1,4 @@
-package bitcamp.java100.ch20.ex3;
+package bitcamp.java100.ch20.ex4;
 
 public class Engine {
     private String name;
@@ -9,6 +9,15 @@ public class Engine {
         System.out.println("Engine()");
     }
     
+    
+    
+    @Override
+    public String toString() {
+        return "Engine [name=" + name + ", valve=" + valve + ", cc=" + cc + "]";
+    }
+
+
+
     public String getName() {
         return name;
     }

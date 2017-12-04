@@ -1,15 +1,21 @@
-package bitcamp.java100.ch20.ex3;
+package bitcamp.java100.ch20.ex5;
 
 public class Car {
     private String model;
     private String color;
     private int capacity;
     private Engine engine;
-    
+
     public Car() {
         System.out.println("Car()");
     }
-    
+
+
+    @Override
+    public String toString() {
+        return "Car [model=" + model + ", color=" + color + ", capacity=" + capacity + ", engine=" + engine + "]";
+    }
+
     public String getModel() {
         return model;
     }
@@ -38,6 +44,6 @@ public class Car {
         this.engine = engine;
         System.out.println("setEngine()");
     }
-    
-    
+
+
 }
