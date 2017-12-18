@@ -6,12 +6,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DataSource {
-    
+
     private String driverClassName;
     private String url;
     private String username;
     private String password;
-    
+
 
     private ArrayList<Connection> list =new ArrayList<>();
 
@@ -21,7 +21,7 @@ public class DataSource {
         if (list.size() > 0) {
             return list.remove(0);
         }
-        
+
         Class.forName(this.driverClassName);
 
         return DriverManager.getConnection(
@@ -31,13 +31,20 @@ public class DataSource {
 
     synchronized public void returnConnection(Connection con) {
         try {
-        if (con == null) return;
-        if (con.isClosed()) return;
-        list.add(con);
+            if (con == null) return;
+            if (con.isClosed()) return;
+            list.add(con);
 
-    } catch (Exception e) {}
+        } catch (Exception e) {}
 
-}
+    }
+
+    synchronized public void close() {
+        for (Connection con : list) {
+            try {con.close();} catch (Exception e) {}
+        }
+
+    }
 
     public String getDriverClassName() {
         return driverClassName;
@@ -70,9 +77,9 @@ public class DataSource {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
-    
-    
-    
+
+
+
+
+
 }

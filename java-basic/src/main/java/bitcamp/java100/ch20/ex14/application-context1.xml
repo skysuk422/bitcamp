@@ -8,26 +8,10 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-
-	<bean id="e1" class="bitcamp.java100.ch20.ex11.Engine">
-	<property name="name" value="비트엔진"/>
-	<property name="valve" value="16"/>
-	<property name="cc" value="1980"/>
-	</bean>
-	
-	<bean id="e2" class="bitcamp.java100.ch20.ex11.Engine">
-    <property name="name" value="볼보엔진"/>
-    <property name="valve" value="32"/>
-    <property name="cc" value="5000"/>
-    </bean>
-
 <!-- 많이 사용하는 애노테이션들을 처리하는 클래스들이 자동으로 등록된다. -->
-    <context:annotation-config/>
+    <context:component-scan base-package="bitcamp.java100.ch20.ex14"/>
 
-	<bean id="c1" class="bitcamp.java100.ch20.ex11.Car">
-	    <property name="model" value="티코"/>
-	    <property name="color" value="빨강"/>
-	</bean>
+	
 
 
 </beans>
